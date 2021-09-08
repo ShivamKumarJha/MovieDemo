@@ -19,6 +19,7 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.shivamkumarjha.moviedemo.config.Constants
 import com.shivamkumarjha.moviedemo.model.Result
+import com.shivamkumarjha.moviedemo.utility.DateUtility
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
@@ -60,7 +61,7 @@ fun MovieItem(movie: Result, modifier: Modifier = Modifier) {
 
                 Text(movie.title, fontSize = 16.sp)
 
-                Text(text = movie.release_date) //TODO use date utility
+                Text(text = DateUtility.getRelativeTime(movie.release_date) ?: movie.release_date)
 
                 Text(text = movie.popularity.toString())
 
