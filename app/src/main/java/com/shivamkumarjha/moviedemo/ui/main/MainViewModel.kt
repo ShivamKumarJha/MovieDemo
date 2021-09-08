@@ -7,11 +7,13 @@ import com.shivamkumarjha.moviedemo.model.MovieResponse
 import com.shivamkumarjha.moviedemo.network.Resource
 import com.shivamkumarjha.moviedemo.persistence.MovieDao
 import com.shivamkumarjha.moviedemo.repository.MovieRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class MainViewModel @Inject constructor(
     private val movieDao: MovieDao,
     private val movieRepository: MovieRepository,

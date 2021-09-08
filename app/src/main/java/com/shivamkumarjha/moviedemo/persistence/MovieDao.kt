@@ -10,13 +10,13 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addResult(result: Result)
 
-    @Query("DELETE from results")
+    @Query("DELETE from movie_results")
     suspend fun clearResults()
 
     @Delete
     suspend fun deleteResult(result: Result)
 
-    @Query("SELECT * FROM results ORDER BY release_date")
+    @Query("SELECT * FROM movie_results ORDER BY release_date")
     fun getPopularMovies(): LiveData<List<Result>>
 
 }
