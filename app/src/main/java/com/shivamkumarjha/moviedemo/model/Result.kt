@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity("results")
+@Entity(tableName = "results")
 data class Result(
     @SerializedName("adult") val adult: Boolean,
     @SerializedName("backdrop_path") val backdrop_path: String,

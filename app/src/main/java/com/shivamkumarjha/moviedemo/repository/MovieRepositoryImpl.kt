@@ -26,6 +26,10 @@ class MovieRepositoryImpl(
             if (response.isSuccessful) {
                 val data = response.body()
                 emit(Resource.success(data))
+                //Save to database
+                data?.results?.forEach { result ->
+                    movieDao.addResult(result)
+                }
             } else {
                 emit(Resource.error(null, response.code().toString()))
             }
