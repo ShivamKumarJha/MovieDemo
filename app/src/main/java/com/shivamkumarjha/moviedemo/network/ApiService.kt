@@ -11,6 +11,7 @@ interface ApiService {
     @GET("discover/movie")
     suspend fun getPopularMovies(
         @Query("sort_by") sort_by: String,
+        @Query("page") page: Int,
         @Query("api_key") api_key: String = Constants.API_KEY,
     ): Response<MovieResponse>
 

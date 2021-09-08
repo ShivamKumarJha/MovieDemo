@@ -31,9 +31,9 @@ class MainViewModel @Inject constructor(
         callApi()
     }
 
-    private fun callApi() {
+    fun callApi(page: Int = 1) {
         viewModelScope.launch(ioDispatcher) {
-            movieRepository.getPopularMovies(Constants.API_SORT_QUERY).collect {
+            movieRepository.getPopularMovies(Constants.API_SORT_QUERY, page).collect {
                 _moviesResponse.postValue(it)
             }
         }

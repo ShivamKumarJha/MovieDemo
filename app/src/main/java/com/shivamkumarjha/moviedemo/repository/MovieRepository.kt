@@ -5,5 +5,5 @@ import com.shivamkumarjha.moviedemo.network.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
-    suspend fun getPopularMovies(sort_by: String): Flow<Resource<MovieResponse?>>
+    suspend fun getPopularMovies(sort_by: String, page: Int): Flow<Resource<MovieResponse?>>
 }

@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 data class Result(
     @SerializedName("adult") val adult: Boolean,
     @SerializedName("backdrop_path") val backdrop_path: String,
-  //  @SerializedName("genre_ids") val genre_ids: List<Int>, //TypeConverter if required
+    //  @SerializedName("genre_ids") val genre_ids: List<Int>, //TypeConverter if required
     @PrimaryKey @SerializedName("id") val id: Int,
     @SerializedName("original_language") val original_language: String,
     @SerializedName("original_title") val original_title: String,
@@ -19,5 +19,6 @@ data class Result(
     @SerializedName("title") val title: String,
     @SerializedName("video") val video: Boolean,
     @SerializedName("vote_average") val vote_average: Double,
-    @SerializedName("vote_count") val vote_count: Int
+    @SerializedName("vote_count") val vote_count: Int,
+    var page: Int = 1
 )

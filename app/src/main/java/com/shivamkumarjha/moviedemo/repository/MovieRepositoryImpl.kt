@@ -19,15 +19,19 @@ class MovieRepositoryImpl(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : MovieRepository {
 
-    override suspend fun getPopularMovies(sort_by: String): Flow<Resource<MovieResponse?>> = flow {
+    override suspend fun getPopularMovies(
+        sort_by: String,
+        page: Int,
+    ): Flow<Resource<MovieResponse?>> = flow {
         emit(Resource.loading(null))
         try {
-            val response = apiService.getPopularMovies(sort_by)
+            val response = apiService.getPopularMovies(sort_by, page)
             if (response.isSuccessful) {
                 val data = response.body()
                 emit(Resource.success(data))
                 //Save to database
                 data?.results?.forEach { result ->
+                    result.page = page
                     movieDao.addResult(result)
                 }
             } else {
