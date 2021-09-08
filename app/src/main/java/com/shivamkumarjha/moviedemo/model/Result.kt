@@ -1,12 +1,15 @@
 package com.shivamkumarjha.moviedemo.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity("results")
 data class Result(
     @SerializedName("adult") val adult: Boolean,
     @SerializedName("backdrop_path") val backdrop_path: String,
     @SerializedName("genre_ids") val genre_ids: List<Int>,
-    @SerializedName("id") val id: Int,
+    @PrimaryKey @SerializedName("id") val id: Int,
     @SerializedName("original_language") val original_language: String,
     @SerializedName("original_title") val original_title: String,
     @SerializedName("overview") val overview: String,
