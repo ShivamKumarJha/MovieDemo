@@ -1,5 +1,9 @@
 package com.shivamkumarjha.moviedemo.di
 
+import com.shivamkumarjha.moviedemo.network.ApiService
+import com.shivamkumarjha.moviedemo.persistence.MovieDao
+import com.shivamkumarjha.moviedemo.repository.MovieRepository
+import com.shivamkumarjha.moviedemo.repository.MovieRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,12 +17,12 @@ object ViewModelModule {
 
     @Provides
     @ViewModelScoped
-    fun getAirlineRepository(
+    fun getMovieRepository(
         apiService: ApiService,
-        airlineDao: AirlineDao,
+        movieDao: MovieDao,
         @IoDispatcher ioDispatcher: CoroutineDispatcher
-    ): AirlineRepository {
-        return AirlineRepositoryImpl(apiService, airlineDao, ioDispatcher)
+    ): MovieRepository {
+        return MovieRepositoryImpl(apiService, movieDao, ioDispatcher)
     }
 
 }
