@@ -17,4 +17,6 @@ object Constants {
 
     //Navigation
     const val NAV_MAIN = "NAV_MAIN"
+
+    const val IMAGE_PREFIX_URL = "https://image.tmdb.org/t/p/w500"
 }
