@@ -1,9 +1,12 @@
 package com.shivamkumarjha.moviedemo.ui.main
 
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -19,9 +22,11 @@ import com.shivamkumarjha.moviedemo.network.Status
 fun MainScreen() {
     val viewModel: MainViewModel = viewModel()
 
+    val listState = rememberLazyListState()
+
     val dbMovies = viewModel.dbMovies.observeAsState(null)
     val moviesResponse = viewModel.moviesResponse.observeAsState(Resource.loading(null))
-    val lastIndex = viewModel.dbMovies.value?.lastIndex
+    val lastIndex = dbMovies.value?.lastIndex
 
     Scaffold(
         bottomBar = {
@@ -31,7 +36,7 @@ fun MainScreen() {
         }
     ) {
 
-        LazyColumn {
+        LazyColumn(state = listState) {
             itemsIndexed(dbMovies.value ?: listOf()) { index, movie ->
                 MovieItem(
                     movie,
@@ -41,10 +46,13 @@ fun MainScreen() {
                 )
                 //Paging
                 if (index == lastIndex) {
-                    LaunchedEffect(Unit) {
+                    LaunchedEffect(index) {
                         viewModel.callApi(movie.page.plus(1))
                     }
                 }
+            }
+            item {
+                Spacer(modifier = Modifier.height(100.dp))
             }
         }
 

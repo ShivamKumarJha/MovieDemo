@@ -16,7 +16,7 @@ interface MovieDao {
     @Delete
     suspend fun deleteResult(result: Result)
 
-    @Query("SELECT * FROM movie_results ORDER BY release_date")
+    @Query("SELECT * FROM movie_results ORDER BY page ASC")
     fun getPopularMovies(): LiveData<List<Result>>
 
 }
