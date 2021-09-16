@@ -31,8 +31,9 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -135,12 +136,6 @@ dependencies {
     //Lottie
     implementation "com.airbnb.android:lottie:4.0.0"
     implementation 'com.airbnb.android:lottie-compose:4.0.0'
-
-    //FBFlipper
-    debugImplementation 'com.facebook.flipper:flipper:0.102.0'
-    debugImplementation 'com.facebook.soloader:soloader:0.10.1'
-    debugImplementation 'com.facebook.flipper:flipper-network-plugin:0.102.0'
-    releaseImplementation 'com.facebook.flipper:flipper-noop:0.102.0'
 
     //Test
     testImplementation 'junit:junit:4.13.2'
